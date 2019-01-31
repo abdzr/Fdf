@@ -1,4 +1,4 @@
-NAME= Fdf
+NAME= fdf
 SRCS= *.c
 INCLDS= *.h
 FLAGS= -Wextra -Werror -Wall
@@ -9,7 +9,7 @@ all : $(NAME)
 $(NAME) :
 		make -C libft
 		gcc $(FLAGS) -c $(SRCS)
-		gcc -o Fdf $(OBJCTS) libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit
+		gcc -o $(NAME) $(OBJCTS) libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit
 
 clean :
 		make clean -C libft
