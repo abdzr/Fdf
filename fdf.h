@@ -9,7 +9,7 @@
 # include "./libft/libft.h"
 # include <mlx.h>
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 4000
 
 typedef struct s_point
 {
@@ -20,23 +20,25 @@ typedef struct s_point
 
 typedef struct s_env 
 {
+    float ang;
+    float crm;
     void    *mlx_ptr;
     void    *win_ptr;
+    int **tab;
     int xi;
     int xf;
     int yi;
     int yf;
-    int **tab;
     int i;
     int j;
     int u;
     int s;
     int sc;
-    float ang;
+    int color;
     int hx;
     int hy;
     int z;
-    float crm;
+    int p;
 }              t_env;
 
 typedef struct s_line
@@ -49,7 +51,10 @@ typedef struct s_line
     int yinc;
     int cumul;
 }               t_line;
-
+typedef struct s_colors
+{
+    int clr;
+}                  t_color;
 
 
 int		get_next_line(const int fd, char **line);

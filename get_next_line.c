@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 13:24:38 by azarzor           #+#    #+#             */
-/*   Updated: 2019/01/17 17:08:05 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/01/30 21:10:34 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int			get_next_line(const int fd, char **line)
 		txt[fd] = ft_strjoin(txt[fd], buf);
 		if (ft_strchr(txt[fd], '\n'))
 			break ;
+		free(txt[fd]);
 	}
 	return (nxt_line(&txt[fd], line));
 }
