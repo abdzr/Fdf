@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:56:03 by azarzor           #+#    #+#             */
-/*   Updated: 2019/01/31 13:00:05 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/01/31 16:53:28 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,8 @@
 #include <mlx.h>
 #include <stdio.h>
 
-void show_me(t_env env)
+int			get_x(int fd, char *line)
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (i < env.i)
-	{
-		j = 0;
-		while (j < env.j)
-		{
-			ft_putnbr(env.tab[i][j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
-}
-int get_x(int fd, char *line)
-{
-
 	int i;
 
 	i = 0;
@@ -46,7 +27,8 @@ int get_x(int fd, char *line)
 	}
 	return (i);
 }
-int get_y(char **str)
+
+int			get_y(char **str)
 {
 	int i;
 
@@ -55,16 +37,28 @@ int get_y(char **str)
 		i++;
 	return (i);
 }
-int main(int argc, char **argv)
-{
-	int fd;
-	char *liine = NULL;
-	t_env env;
-	char **str;
-	int x;
 
-	env.mlx_ptr = mlx_init();
-	env.win_ptr = mlx_new_window(env.mlx_ptr, 2900, 1600, "1337 mlx");
+void		initialisation(t_env *env)
+{
+	env->a = 0.523599;
+	env->c = 0.523599;
+	env->hy = env->i / 2;
+	env->hx = env->j / 2;
+	env->u = 0;
+	env->z = 20;
+	env->color = 0xFFFFFF;
+	env->p = 0;
+}
+
+int			main(int argc, char **argv)
+{
+	int			fd;
+	char		*liine;
+	t_env		env;
+	char		**str;
+	int			x;
+
+	liine = NULL;
 	if (argc != 2)
 		ft_putstr("Error\n");
 	fd = open(argv[1], O_RDONLY);
@@ -87,12 +81,9 @@ int main(int argc, char **argv)
 		}
 		(env.i)++;
 	}
-	env.hy = env.i / 2;
-	env.hx = env.j / 2;
-	env.u = 0;
-	env.z = 10;
-	env.color = 0xFFFFFF;
-	env.p = 0;
+	initialisation(&env);
+	env.mlx_ptr = mlx_init();
+	env.win_ptr = mlx_new_window(env.mlx_ptr, env.i * 40, env.j * 30, "1337 mlx");
 	grid(env);
 	mlx_key_hook(env.win_ptr, &key_stroke, &env);
 	mlx_loop(env.mlx_ptr);
