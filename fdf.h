@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:33:21 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/01 13:38:46 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/01 13:54:37 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,11 @@ int					get_x(int fd);
 int					get_y(char **str);
 void				draw_grid(t_env *env);
 void				key_stroke_2(int key, void *test);
+void				linedraw_one(t_env env, t_line p);
+void				linedraw_two(t_env env, t_line p);
+void				calculs(t_env env, t_point **ta);
+void				maindraw(t_env env, t_point **ta, int *i, int *j);
+t_point				**taballoc(t_env env);
+void				initialisation(t_env *env);
+void				func(char **argv, t_env *env, int x);
 #endif
