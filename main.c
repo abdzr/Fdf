@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:56:03 by azarzor           #+#    #+#             */
-/*   Updated: 2019/01/31 18:01:56 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/01 13:42:29 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include <mlx.h>
 #include <stdio.h>
 
-int			get_x(int fd, char *line)
+int			get_x(int fd)
 {
-	int i;
+	int		i;
+	char	*line;
 
 	i = 0;
+	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		i++;
@@ -56,36 +58,46 @@ void		initialisation(t_env *env)
 	mlx_loop(env->mlx_ptr);
 }
 
-int			main(int argc, char **argv)
+void		func(char **argv, t_env *env, int x)
 {
 	int			fd;
 	char		*liine;
-	t_env		env;
 	char		**str;
-	int			x;
 
-	liine = NULL;
-	(argc != 2) ? ft_putstr("Error\n") : 1;
 	fd = open(argv[1], O_RDONLY);
-	x = get_x(fd, liine);
-	close(fd);
-	fd = open(argv[1], O_RDONLY);
-	env.tab = (int **)malloc(sizeof(int *) * (x + 1));
-	env.i = 0;
+	env->tab = (int **)malloc(sizeof(int *) * (x + 1));
+	env->i = 0;
 	while (get_next_line(fd, &liine) > 0)
 	{
 		str = ft_strsplit(liine, ' ');
 		free(liine);
 		liine = NULL;
-		env.tab[env.i] = (int *)malloc(sizeof(int) * get_y(str));
-		env.j = -1;
-		while (str[++(env.j)])
+		env->tab[env->i] = (int *)malloc(sizeof(int) * get_y(str));
+		env->j = -1;
+		while (str[++(env->j)])
 		{
-			env.tab[env.i][env.j] = ft_atoi(str[env.j]);
-			free(str[env.j]);
+			env->tab[env->i][env->j] = ft_atoi(str[env->j]);
+			free(str[env->j]);
 		}
-		(env.i)++;
+		(env->i)++;
 	}
+}
+
+int			main(int argc, char **argv)
+{
+	t_env		env;
+	int			fd;
+	int			x;
+
+	if (argc != 2)
+	{
+		ft_putstr("Error\n");
+		return (0);
+	}
+	fd = open(argv[1], O_RDONLY);
+	x = get_x(fd);
+	close(fd);
+	func(argv, &env, x);
 	initialisation(&env);
 	return (0);
 }
