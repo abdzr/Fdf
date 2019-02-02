@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:04:20 by azarzor           #+#    #+#             */
-/*   Updated: 2019/01/31 17:19:37 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/02 13:37:48 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,27 @@ void			key_stroke_2(int key, void *test)
 	t_env	*env;
 
 	env = (t_env *)test;
-	mlx_clear_window(env->mlx_ptr, env->win_ptr);
-	if (key == 7)
+	if (key == 78)
 	{
-		env->z -= 5;
-		if (env->z < 0)
-			env->z = 30;
+		(env->z >  5) ? env->z -= 5 : 0;
+			//if (env->z < 0)
+				//env->z = 30;
 	}
-	(key == 49) ? env->color = 0xFFFFFF : 1;
-	grid(*env);
+	if (key == 49)
+	{
+		env->clrd = 0xFFFFFF;
+		env->clru = 0xFFD700;
+	}
+	if (key == 8)
+	{
+		env->clru = 0xFF0000;
+		env->clrd = 0x6A5ACD;
+	}
+	if (key == 9)
+	{
+		env->clru = 0x7CFC00;
+		env->clrd = 0xDAA520;
+	}
 }
 
 int				key_stroke(int key, void *test)
@@ -39,16 +51,13 @@ int				key_stroke(int key, void *test)
 	(key == 125) ? env->u = env->u + 5 : 1;
 	(key == 124) ? env->s = env->s + 5 : 1;
 	(key == 123) ? env->s = env->s - 5 : 1;
-	(key == 15) ? env->a = env->a + 0.3 : 1;
-	(key == 14) ? env->sc = env->sc + 1 : 1;
-	(key == 13) ? env->sc = env->sc - 1 : 1;
-	(key == 17) ? env->a = env->a - 0.3 : 1;
-	(key == 0) ? env->c = env->c - 0.3 : 1;
-	(key == 1) ? env->c = env->c + 0.3 : 1;
-	(key == 6) ? env->z += 5 : 1;
-	(key == 8) ? env->color = 0xFF0000 : 1;
-	(key == 9) ? env->color = 0x00FF00 : 1;
-	(key == 11) ? env->color = 0x0000FF : 1;
+	(key == 88) ? env->a = env->a + 0.3 : 1;
+	(key == 86) ? env->a = env->a - 0.3 : 1;
+	(key == 0) ? env->sc = env->sc + 1 : 1;
+	(key == 1) ? env->sc = env->sc - 1 : 1;
+	(key == 91) ? env->c = env->c - 0.3 : 1;
+	(key == 84) ? env->c = env->c + 0.3 : 1;
+	(key == 69) ? env->z += 5 : 1;
 	(key == 35) ? env->p = 0 : 1;
 	(key == 31) ? env->p = 1 : 1;
 	key_stroke_2(key, test);

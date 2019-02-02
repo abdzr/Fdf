@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:56:03 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/01 13:42:29 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/02 13:42:42 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,27 @@ int			get_y(char **str)
 
 void		initialisation(t_env *env)
 {
+	int resx;
+	int resy;
+
 	env->a = 0.523599;
 	env->c = 0.523599;
 	env->hy = env->i / 2;
 	env->hx = env->j / 2;
 	env->u = 0;
 	env->z = 20;
-	env->color = 0xFFFFFF;
+	env->clrd = 0xFFFFFF;
+	env->clru = 0xFFD700;
 	env->p = 0;
 	env->mlx_ptr = mlx_init();
-	env->win_ptr = mlx_new_window(env->mlx_ptr, env->i * 60,
-			env->j * 30, "FDF");
+	resx = env->i * 60;
+	resy = env->j * 30;
+	(resx > 2900) ? resx = 2900 : 1;
+	(resy > 1600) ? resy = 1600 : 1;
+	env->win_ptr = mlx_new_window(env->mlx_ptr, resx,
+			resy, "FDF");
 	grid(*env);
-	mlx_key_hook(env->win_ptr, &key_stroke, env);
+	mlx_hook(env->win_ptr,2 ,0 , &key_stroke, env);
 	mlx_loop(env->mlx_ptr);
 }
 
@@ -65,7 +73,7 @@ void		func(char **argv, t_env *env, int x)
 	char		**str;
 
 	fd = open(argv[1], O_RDONLY);
-	env->tab = (int **)malloc(sizeof(int *) * (x + 1));
+	env->tab = (int **)malloc(sizeof(int *) * x);
 	env->i = 0;
 	while (get_next_line(fd, &liine) > 0)
 	{

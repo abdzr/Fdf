@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:33:21 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/01 13:54:37 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/01 19:04:42 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct		s_env
 	int			hy;
 	int			z;
 	int			p;
+	int			clru;
+	int			clrd;
 }					t_env;
 typedef struct		s_line
 {
