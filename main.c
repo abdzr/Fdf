@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:56:03 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/02 13:42:42 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/02 15:35:35 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		initialisation(t_env *env)
 	env->win_ptr = mlx_new_window(env->mlx_ptr, resx,
 			resy, "FDF");
 	grid(*env);
-	mlx_hook(env->win_ptr,2 ,0 , &key_stroke, env);
+	mlx_hook(env->win_ptr, 2, 0, &key_stroke, env);
 	mlx_loop(env->mlx_ptr);
 }
 

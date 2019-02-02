@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:04:20 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/02 13:37:48 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/02 15:35:09 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ void			key_stroke_2(int key, void *test)
 
 	env = (t_env *)test;
 	if (key == 78)
-	{
-		(env->z >  5) ? env->z -= 5 : 0;
-			//if (env->z < 0)
-				//env->z = 30;
-	}
+		(env->z > 5) ? env->z -= 5 : 0;
 	if (key == 49)
 	{
 		env->clrd = 0xFFFFFF;
