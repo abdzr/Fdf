@@ -6,13 +6,30 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 13:26:57 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/01 19:02:25 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/26 12:39:04 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 #include <math.h>
+
+void		event_3(int key, void *test)
+{
+	t_env *env;
+
+	env = (t_env *)test;
+	mlx_clear_window(env->mlx_ptr, env->win_ptr);
+	(key == 53) ? exit(0) : 1;
+	(key == 126) ? env->u = env->u - 5 : 1;
+	(key == 125) ? env->u = env->u + 5 : 1;
+	(key == 124) ? env->s = env->s + 5 : 1;
+	(key == 123) ? env->s = env->s - 5 : 1;
+	(key == 88) ? env->a = env->a + 0.3 : 1;
+	(key == 86) ? env->a = env->a - 0.3 : 1;
+	(key == 0) ? env->sc = env->sc + 1 : 1;
+	(key == 1) ? env->sc = env->sc - 1 : 1;
+}
 
 void		calculs(t_env env, t_point **ta)
 {
@@ -26,13 +43,13 @@ void		calculs(t_env env, t_point **ta)
 		while (++j < env.j)
 		{
 			(env.p == 0) ? ta[i][j].y = ((j - env.hx) + (i - env.hy)) *
-			sin(env.c) * env.z + env.u - (env.tab[i][j] * env.sc) : 0;
+				sin(env.c) * env.z + env.u - (env.tab[i][j] * env.sc) : 0;
 			(env.p == 0) ? ta[i][j].x = ((j - env.hx) - (i - env.hy)) *
-			cos(env.a) * env.z + env.s : 0;
+				cos(env.a) * env.z + env.s : 0;
 			(env.p != 0) ? ta[i][j].x = (j - env.hx) * env.z +
-					0.5 * env.tab[i][j] * env.sc + env.s : 0;
+				0.5 * env.tab[i][j] * env.sc + env.s : 0;
 			(env.p != 0) ? ta[i][j].y = (i - env.hy) * env.z + (0.5 / 2) *
-					env.tab[i][j] * env.sc + env.u : 0;
+				env.tab[i][j] * env.sc + env.u : 0;
 			ta[i][j].z = env.tab[i][j];
 		}
 	}

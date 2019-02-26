@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:56:03 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/02 15:35:35 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/23 21:51:37 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		initialisation(t_env *env)
 	env->hy = env->i / 2;
 	env->hx = env->j / 2;
 	env->u = 0;
-	env->z = 20;
+	env->z = 10;
 	env->clrd = 0xFFFFFF;
 	env->clru = 0xFFD700;
 	env->p = 0;

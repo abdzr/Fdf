@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:04:20 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/02 15:35:09 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/26 12:39:02 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void			key_stroke_2(int key, void *test)
 		env->clru = 0x7CFC00;
 		env->clrd = 0xDAA520;
 	}
+	(key == 69) ? env->z += 5 : 1;
+	(key == 35) ? env->p = 0 : 1;
+	(key == 31) ? env->p = 1 : 1;
+	(key == 91) ? env->c = env->c - 0.3 : 1;
+	(key == 84) ? env->c = env->c + 0.3 : 1;
 }
 
 int				key_stroke(int key, void *test)
@@ -42,22 +47,26 @@ int				key_stroke(int key, void *test)
 
 	env = (t_env *)test;
 	mlx_clear_window(env->mlx_ptr, env->win_ptr);
-	(key == 53) ? exit(0) : 1;
-	(key == 126) ? env->u = env->u - 5 : 1;
-	(key == 125) ? env->u = env->u + 5 : 1;
-	(key == 124) ? env->s = env->s + 5 : 1;
-	(key == 123) ? env->s = env->s - 5 : 1;
-	(key == 88) ? env->a = env->a + 0.3 : 1;
-	(key == 86) ? env->a = env->a - 0.3 : 1;
-	(key == 0) ? env->sc = env->sc + 1 : 1;
-	(key == 1) ? env->sc = env->sc - 1 : 1;
-	(key == 91) ? env->c = env->c - 0.3 : 1;
-	(key == 84) ? env->c = env->c + 0.3 : 1;
-	(key == 69) ? env->z += 5 : 1;
-	(key == 35) ? env->p = 0 : 1;
-	(key == 31) ? env->p = 1 : 1;
+	event_3(key, test);
 	key_stroke_2(key, test);
-	grid(*env);
+	if (key == 65)
+	{
+		mlx_clear_window(env->mlx_ptr, env->win_ptr);
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 100, 0xFFFFFF,
+				"Press Arrows to move.");
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 120, 0xFFFFFF,
+				"Press 4,2,6,8 to rotate.");
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 140, 0xFFFFFF,
+				"Press C,V, SpaceBar to change colours.");
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 160, 0xFFFFFF,
+				"Press A and S to change height.");
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 180, 0xFFFFFF,
+				"Press + and - to zoom.");
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 200, 0xFFFFFF,
+				"Press O and P to change view.");
+	}
+	else
+		grid(*env);
 	return (0);
 }
 

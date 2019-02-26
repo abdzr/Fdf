@@ -6,7 +6,7 @@
 /*   By: azarzor <azarzor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:33:21 by azarzor           #+#    #+#             */
-/*   Updated: 2019/02/01 19:04:42 by azarzor          ###   ########.fr       */
+/*   Updated: 2019/02/26 12:35:11 by azarzor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ void				maindraw(t_env env, t_point **ta, int *i, int *j);
 t_point				**taballoc(t_env env);
 void				initialisation(t_env *env);
 void				func(char **argv, t_env *env, int x);
+void				event_3(int key, void *test);
 #endif
